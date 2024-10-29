@@ -8,11 +8,11 @@ function setup() {
   createCanvas(400, 400);
   background(255);
   stroke(255);
-  strokeWeight(3);//ここわからへん後で変えてみよう
+  strokeWeight(3);//線太さ
 
   const cx = width / 2; // 中心は (cx, cy)
   const cy = height / 2;
-  const maxR = min(width, height); // 大きさは幅と高さのうち小さい方
+  const maxR = min(width, height); // 大きさは幅と高さのうち小さい方　別にminじゃなくてもいい。widthだけでもいいんじゃね
 
   drawCircle(black, maxR);
   drawArcs(green, red, maxR * 0.8);
