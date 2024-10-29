@@ -8,7 +8,7 @@ function setup() {
   createCanvas(400, 400);
   background(255);
   stroke(255);
-  strokeWeight(3);
+  strokeWeight(3);//ここわからへん後で変えてみよう
 
   const cx = width / 2; // 中心は (cx, cy)
   const cy = height / 2;
@@ -17,6 +17,8 @@ function setup() {
   drawCircle(black, maxR);
   drawArcs(green, red, maxR * 0.8);
   // BLANK[1] (hint: drawArcs x 3, drawCircle x 1)
+  drawArcs()
+  drawCircle(green, maxR * 0.1);
   drawCircle(red, maxR * 0.05);
 }
 
