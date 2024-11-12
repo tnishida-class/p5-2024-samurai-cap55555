@@ -27,7 +27,7 @@ function setup() {
 function drawCircle(c, r){
   const cx = width / 2; // 中心は (cx, cy)
   const cy = height / 2;
-  fill(c);
+  fill(c);//これなに？→drawCircleのc。あとでそこに色を入れる
   ellipse(cx, cy, r, r);
 }
 
@@ -35,7 +35,7 @@ function drawArcs(c1, c2, r) {
   const cx = width / 2; // 中心は (cx, cy)
   const cy = height / 2;
   for (let i = 0; i < 20; i++) {
-    let start = TWO_PI / 20 * i;
+    let start = TWO_PI / 20 * i;//ここからわからへん。１つずつ進んでる。０から１，１から２
     let stop = TWO_PI / 20 * (i + 1);
     fill(i % 2 == 0 ? c1 : c2);
     arc(cx, cy, r, r, start, stop, PIE);
