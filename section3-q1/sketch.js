@@ -19,7 +19,7 @@ function draw(){
   if (count < cycle/2) {
     size = count + 50;
     } else {
-    size = (cycle - count) + 50;
+    size = (cycle - count) + 20;
     }
   ellipse(width / 2, height / 2, size);
 }

@@ -20,8 +20,8 @@ function setup() {
   rect(0, 0, size, size);
 
   fill(255);
-  rect(0, d * 2, d * 5, d  )
+  rect(0, d * 2, d * 5, d )
   fill(255)
-  rect(d * 2, 0, d, d *5)
+  rect(d * 2, 0, d, d *5 )
   // BLANK[2] (hint: 白い十字を描くには rect を二つ描こう)
 }
