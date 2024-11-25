@@ -13,6 +13,16 @@ function setup(){
     }
   }
 }
+for(let i = 2000; i <= 2100; i++){
+  if(daysInYear(i)){
+    console.log(i + "年は366");
+  }
+  else{
+    console.log(i + "年は365");
+  }
+}
+
+
 
 function calendar(y, m){
   let dow = dayOfWeek(y, m, 1);
@@ -26,6 +36,7 @@ function isLeapYear(y){
 }
 
 function daysInYear(y){
+  return (y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0);
   // BLANK[1]
 }
 
@@ -43,14 +54,14 @@ function daysInMonth(y, m){
 
 function dayOfYear(y, m, d){
   let count = 0;
-  for(let i = 1; i < m; i++){
-    count += daysInMonth(y, i);
+  for(let i = 1; i < m; i++){　
+    count += daysInMonth(y, i);//m=11なら、10月までの日数を足していく。月の日数は上で、daysInMonthで出してるからそれを使う
   }
-  return count + d;
+  return count + d;//11月のそこまでの日数を足す。群数列みたい
 }
 
 function dayOfWeek(y, m, d){
-  // BLANK[2]
+  // BLANK[2] この辺がわからない
 }
 
 function dayOfWeekAsString(dow){
