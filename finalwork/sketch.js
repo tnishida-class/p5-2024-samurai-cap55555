@@ -70,7 +70,7 @@ function drawArcs(c1, c2, c3, c4, r) {
   const cx = 0; 
   const cy = 0;
   for (let i = 0; i < 20; i++) {
-    let start = TWO_PI / 20 * i;//ここからわからへん。１つずつ進んでる。０から１，１から２
+    let start = TWO_PI / 20 * i;
     let stop = TWO_PI / 20 * (i + 1);
   
     if(i % 4 == 0){
@@ -141,7 +141,7 @@ function drawBall() {
 function mousePressed() {
   if (!spinning) {
     spinning = true;
-    spinSpeed = random(0.1, 0.3); // 回転速度をランダムに設定
+    spinSpeed = random(0.1, 0.8); // 回転速度をランダムに設定
     flashingSegment = -1; // 点滅解除
     flashing = false;
     ballStopped = false; // ボールを動かす
