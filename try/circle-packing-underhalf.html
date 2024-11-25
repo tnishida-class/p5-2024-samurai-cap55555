@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>円の下半分に円を敷き詰める</title>
+</head>
+<body>
+  <canvas id="circleCanvas" width="600" height="600"></canvas>
+  <script>
+    const canvas = document.getElementById('circleCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // メイン円の設定
+    const mainCircle = {
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      radius: 250
+    };
+
+    // 小さい円のリスト
+    const circles = [];
+
+    // ランダムな範囲の数値を生成する関数
+    function getRandom(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    // 2つの円が重なるかを確認する関数
+    function circlesOverlap(x1, y1, r1, x2, y2, r2) {
+      const distance = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+      return distance < r1 + r2;
+    }
+
+    // 円がメイン円の下半分に収まるかを確認する関数
+    function isInsideLowerHalf(x, y, r, mainCircle) {
+      const distance = Math.sqrt((x - mainCircle.x) ** 2 + (y - mainCircle.y) ** 2);
+      const isInCircle = distance + r <= mainCircle.radius; // メイン円内に収まるか
+      const isInLowerHalf = y >= mainCircle.y; // 下半分に収まるか
+      return isInCircle && isInLowerHalf;
+    }
+
+    // ランダムな小さい円を追加する関数
+    function addRandomCircle() {
+      let attempts = 0;
+      while (attempts < 1000) {
+        const radius = getRandom(15, 50); // 小さい円の半径の範囲 変更
+        const x = getRandom(mainCircle.x - mainCircle.radius + radius, mainCircle.x + mainCircle.radius - radius);
+        const y = getRandom(mainCircle.y, mainCircle.y + mainCircle.radius - radius); // 下半分のみ
+        if (isInsideLowerHalf(x, y, radius, mainCircle)) {
+          let overlap = false;
+          for (const circle of circles) {
+            if (circlesOverlap(x, y, radius, circle.x, circle.y, circle.radius)) {
+              overlap = true;
+              break;
+            }
+          }
+          if (!overlap) {
+            circles.push({ x, y, radius });
+            break;
+          }
+        }
+        attempts++;
+      }
+    }
+
+    // メインの大きな円を描画
+    function drawMainCircle() {
+      ctx.beginPath();
+      ctx.arc(mainCircle.x, mainCircle.y, mainCircle.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    // 小さい円を描画
+    function drawCircles() {
+      for (const circle of circles) {
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+        const hue = getRandom(75, 150); // 緑系の色相を設定
+        ctx.fillStyle = `hsl(${hue}, 70%, 70%)`; // 緑系の色
+        ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+      }
+    }
+
+    // 初期化
+    function init() {
+      drawMainCircle();
+      for (let i = 0; i < 100; i++) { // 100個の小さい円を試みる
+        addRandomCircle();
+      }
+      drawCircles();
+    }
+
+    init();
+  </script>
+</body>
+</html>
